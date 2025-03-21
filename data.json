@@ -1,0 +1,7 @@
+{
+    "wasteDistribution": [30, 25, 15, 20, 5, 5],
+    "monthlyTrend": [65, 70, 80, 81, 90, 95],
+    "impact": [120, 80, 150],
+    "efficiency": [30, 70]
+  }
+  

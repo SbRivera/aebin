@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/aebin/static/css/main.fb994307.css",
+    "main.js": "/aebin/static/js/main.8a495382.js",
+    "index.html": "/aebin/index.html",
+    "main.fb994307.css.map": "/aebin/static/css/main.fb994307.css.map",
+    "main.8a495382.js.map": "/aebin/static/js/main.8a495382.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fb994307.css",
+    "static/js/main.8a495382.js"
+  ]
+}
