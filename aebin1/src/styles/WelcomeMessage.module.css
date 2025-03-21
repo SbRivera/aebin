@@ -1,0 +1,15 @@
+.welcomeMessage {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease, transform 1s ease;
+    text-align: center;
+    margin: 1rem 0;
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  
+  .welcomeMessage.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  

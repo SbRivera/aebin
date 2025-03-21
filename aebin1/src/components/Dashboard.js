@@ -1,30 +1,55 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import styles from '../styles/Dashboard.module.css';
 import { fetchWasteData } from '../controllers/dataService';
+import WelcomeMessage from './WelcomeMessage';
 
 const Dashboard = () => {
+  const [wasteData, setWasteData] = useState([30, 25, 15, 20, 5, 5]);
   const wasteChartRef = useRef(null);
   const monthlyTrendRef = useRef(null);
   const impactChartRef = useRef(null);
   const efficiencyChartRef = useRef(null);
+  const wasteChartInstance = useRef(null);
+
+  // Función para actualizar datos (simulación)
+  const updateCharts = (newData) => {
+    if (wasteChartInstance.current) {
+      wasteChartInstance.current.data.datasets[0].data = newData;
+      wasteChartInstance.current.update();
+    }
+  };
 
   useEffect(() => {
-    // Ejemplo: podrías usar fetchWasteData para obtener datos externos
+    // Simula obtener datos dinámicos cada 10 segundos
+    const interval = setInterval(() => {
+      // Por ejemplo, se simulan datos aleatorios
+      const newData = wasteData.map(val => Math.floor(val + (Math.random() * 10 - 5)));
+      setWasteData(newData);
+      updateCharts(newData);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [wasteData]);
+
+  useEffect(() => {
+    // Aquí se puede integrar fetchWasteData para obtener datos externos reales.
     fetchWasteData().then((data) => {
-      console.log('Datos externos:', data);
-      // Procesa y actualiza tus gráficos aquí si fuera necesario
+      if (data && data.wasteDistribution) {
+        setWasteData(data.wasteDistribution);
+        updateCharts(data.wasteDistribution);
+      }
     });
 
-    // Distribución de residuos (gráfico pie)
+    // Gráfico de distribución de residuos (tipo pie)
     const wasteCtx = wasteChartRef.current.getContext('2d');
-    new Chart(wasteCtx, {
+    wasteChartInstance.current = new Chart(wasteCtx, {
       type: 'pie',
       data: {
         labels: ['Plástico', 'Papel', 'Vidrio', 'Orgánico', 'Metal', 'No Reciclable'],
         datasets: [
           {
-            data: [30, 25, 15, 20, 5, 5],
+            data: wasteData,
             backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#C9CBCF'],
           },
         ],
@@ -32,7 +57,7 @@ const Dashboard = () => {
       options: { responsive: true, maintainAspectRatio: false },
     });
 
-    // Tendencia mensual (gráfico de línea)
+    // Configuración de otros gráficos (se omite actualización dinámica por simplicidad)
     const trendCtx = monthlyTrendRef.current.getContext('2d');
     new Chart(trendCtx, {
       type: 'line',
@@ -42,7 +67,7 @@ const Dashboard = () => {
           {
             label: 'Residuos Reciclables (kg)',
             data: [65, 70, 80, 81, 90, 95],
-            borderColor: '#4CAF50',
+            borderColor: '#f05000',
             tension: 0.1,
             fill: false,
           },
@@ -51,7 +76,6 @@ const Dashboard = () => {
       options: { responsive: true, maintainAspectRatio: false },
     });
 
-    // Impacto ambiental (gráfico de barras horizontal)
     const impactCtx = impactChartRef.current.getContext('2d');
     new Chart(impactCtx, {
       type: 'bar',
@@ -72,7 +96,6 @@ const Dashboard = () => {
       },
     });
 
-    // Eficiencia del sistema (gráfico doughnut)
     const efficiencyCtx = efficiencyChartRef.current.getContext('2d');
     new Chart(efficiencyCtx, {
       type: 'doughnut',
@@ -81,7 +104,7 @@ const Dashboard = () => {
         datasets: [
           {
             data: [95, 5],
-            backgroundColor: ['#4CAF50', '#FF5722'],
+            backgroundColor: ['#f05000', '#FF5722'],
           },
         ],
       },
@@ -93,6 +116,8 @@ const Dashboard = () => {
     <section className={styles.dashboardSection}>
       <h2>Dashboard de Métricas</h2>
       <p>Información detallada sobre clasificación de residuos en tiempo real</p>
+      {/* Mensaje de bienvenida animado */}
+      <WelcomeMessage />
       <div className={styles.dashboardGrid}>
         <div className={styles.metricCard}>
           <h3>Distribución de Residuos</h3>

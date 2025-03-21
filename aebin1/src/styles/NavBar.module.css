@@ -1,3 +1,4 @@
+/* src/styles/NavBar.module.css */
 .navbar {
     background-color: var(--dark-color);
     padding: 1rem;
@@ -6,19 +7,16 @@
     gap: 1rem;
   }
   
-  .navbar button {
-    background-color: transparent;
-    border: none;
+  .navbar a {
+    text-decoration: none;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
   }
   
-  .navbar button:hover,
-  .navbar button.active,
-  .navbar button:focus {
+  .navbar a:hover,
+  .navbar a.active {
     background-color: var(--primary-color);
   }
   

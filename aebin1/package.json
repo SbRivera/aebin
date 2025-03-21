@@ -4,11 +4,12 @@
   "private": true,
   "homepage": "https://SbRivera.github.io/aebin",
   "dependencies": {
-    "chart.js": "^3.7.0",
+    "chart.js": "^3.9.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^7.4.0",
     "react-scripts": "5.0.1",
-    "three": "^0.140.0"
+    "three": "^0.140.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,5 +21,17 @@
   },
   "devDependencies": {
     "gh-pages": "^5.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
