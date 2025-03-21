@@ -1,0 +1,37 @@
+.dashboardSection {
+    display: block;
+  }
+  
+  .dashboardSection h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .dashboardSection p {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .metricCard {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .metricCard h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .chartContainer {
+    height: 200px;
+    position: relative;
+  }
+  

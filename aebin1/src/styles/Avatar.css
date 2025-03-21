@@ -1,0 +1,19 @@
+.avatarSection {
+    text-align: center;
+  }
+  
+  .avatarSection h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .avatarSection p {
+    margin-bottom: 2rem;
+  }
+  
+  .avatarContainer {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 2rem auto;
+    position: relative;
+  }
+  
